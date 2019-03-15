@@ -9,9 +9,7 @@ namespace WashingProjekt
     class Automat
     {
         static Program prog = new Program();
-        double moneyReturned;
-        public double moneyErnedToday;
-        bool cancelProduct;
+        public static double moneyErnedToday;
         public double valueOfSnac;
         bool isEnough = false;
         public bool cancer = false;
@@ -25,7 +23,6 @@ namespace WashingProjekt
                     snackInfo = "name of snack " + snack.NameOfSnack + ", price " + snack.PriceOfSnack;
                     Console.WriteLine(snackInfo);
                 }
-
         }
 
         //Checks if there is a snack that users wants
@@ -39,7 +36,7 @@ namespace WashingProjekt
         /// </summary>
         public void CheckASnack()
         {
-            Console.WriteLine("what snack");
+            Console.WriteLine("name of snack");
             prog.whatSnack = Console.ReadLine().ToLower();
 
             bool isFound = false;
@@ -57,6 +54,7 @@ namespace WashingProjekt
 
             if (isFound == true)
             {
+                //Checks if the user put enough money to autmat
                 CheckIfItsEnough();
                 //CancerOrder ask user if he is sure that he wants to proccede
                 //with action, there is no other chance
@@ -71,11 +69,9 @@ namespace WashingProjekt
                     Console.WriteLine("Not enough money or action canceled");
                     ReturnRestOfMoney();
                 }
-                //Cancerorder
-                ///also make a method that returns amount that is missing
                 ///also method for user to add to the money so they can try again
             }else
-                Console.WriteLine("no snack");
+                Console.WriteLine("no snack with that name");
         }
 
         bool CheckIfItsEnough()
@@ -120,7 +116,9 @@ namespace WashingProjekt
 
             double returnValue = prog.moneyInput - valueOfSnac;
 
+            moneyErnedToday = moneyErnedToday + valueOfSnac;
             Console.WriteLine(returnValue);
+            Console.WriteLine(moneyErnedToday);
             return returnValue;
         }
     }
