@@ -10,6 +10,7 @@ namespace WashingProjekt
     {
         public string nameOfSnack;
         public double priceOfSnack;
+        int howManySnackAdd;
         public void AddSnack()
         {
             try
@@ -18,7 +19,13 @@ namespace WashingProjekt
                 nameOfSnack = Console.ReadLine();
                 Console.WriteLine("Write price of snack");
                 priceOfSnack = double.Parse(Console.ReadLine());
-                Snack newSnack = new Snack(nameOfSnack, priceOfSnack);
+                Console.WriteLine("How many snacs of yours you want you add");
+                howManySnackAdd = int.Parse( Console.ReadLine() );
+
+                for (int i = 0; i < howManySnackAdd; i++)
+                {
+                    Snack newSnack = new Snack(nameOfSnack, priceOfSnack);
+                }
             }
             catch
             {

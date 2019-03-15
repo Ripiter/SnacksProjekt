@@ -8,14 +8,13 @@ namespace WashingProjekt
 {
     class Program
     {
-        public static double moneyInput;
+        public  double moneyInput = 100;
         public static string chooseMenu;
-        public static string whatSnack;
-
+        //whatSnack is userinput for what kind of snack he wants
+        public string whatSnack;
         
         static void Main(string[] args)
         {
-
             while (true)
             {
                 Console.Clear();
@@ -23,8 +22,8 @@ namespace WashingProjekt
                 Console.WriteLine("2 to add a snack");
                 Console.WriteLine("3 to test snack");
                 Console.WriteLine("4 add hardcoded snacks");
+                Console.WriteLine("5 cancer the order");
 
-                moneyInput = 100;
                 chooseMenu = Console.ReadLine();
                 Menu();
 
@@ -52,6 +51,9 @@ namespace WashingProjekt
                     break;
                 case "4":
                     automat.HardCodeSnacks();
+                    break;
+                case "5":
+                    automat.CancerOrder();
                     break;
                 default:
                     Console.WriteLine("Wrong input");
