@@ -32,5 +32,12 @@ namespace WashingProjekt
                 Console.WriteLine("Incorrect input");
             }
         }
+        public void HardCodeSnacks()
+        {
+            Snack charmander = new Snack("charmander", 15);
+            Snack pikachu = new Snack("pikachu", 20);
+            Snack squirtle = new Snack("squirtle", 10);
+            Snack bulbasaur = new Snack("bulbasaur", 5);
+        }
     }
 }

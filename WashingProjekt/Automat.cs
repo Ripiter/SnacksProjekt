@@ -8,21 +8,21 @@ namespace WashingProjekt
 {
     class Automat
     {
-        static Program prog = new Program();
+        public Program prog = new Program();
         public static double moneyErnedToday;
         public double valueOfSnac;
         bool isEnough = false;
         public bool cancer = false;
 
 
-        public void AvaibleSnacks()
+        public string AvaibleSnacks()
         {
-                string snackInfo;
+            string snackInfo = "";
                 foreach (Snack snack in Snack.Snac)
                 {
-                    snackInfo = "name of snack " + snack.NameOfSnack + ", price " + snack.PriceOfSnack;
-                    Console.WriteLine(snackInfo);
+                    snackInfo = snackInfo + "name of snack " + snack.NameOfSnack + ", price " + snack.PriceOfSnack + "\r\n";
                 }
+            return snackInfo;
         }
 
         //Checks if there is a snack that users wants
@@ -36,7 +36,17 @@ namespace WashingProjekt
         /// </summary>
         public void CheckASnack()
         {
-            Console.WriteLine("name of snack");
+            try
+            {
+                Console.WriteLine("insert money");
+                prog.moneyInput = double.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("incorrect input");
+                return;
+            }
+            Console.WriteLine("name of snack that you want");
             prog.whatSnack = Console.ReadLine().ToLower();
 
             bool isFound = false;
@@ -59,13 +69,11 @@ namespace WashingProjekt
                 //CancerOrder ask user if he is sure that he wants to proccede
                 //with action, there is no other chance
                 CancerOrder();
-                if (isEnough == true && cancer == false)
-                {
+                if (isEnough == true && cancer == false){
                     ReturnRestOfMoney();
                     GiveUserSnack();
                 }
-                else
-                {
+                else{
                     Console.WriteLine("Not enough money or action canceled");
                     ReturnRestOfMoney();
                 }
@@ -84,7 +92,7 @@ namespace WashingProjekt
 
         //Asks user if he wants to proccede with the order
         //if not user gets his money back
-        public bool CancerOrder()
+        bool CancerOrder()
         {
             Console.WriteLine("Do you want to proccede?");
             string yesNo = Console.ReadLine().ToLower();
@@ -100,13 +108,6 @@ namespace WashingProjekt
             //remove snack from snack list
             Snack.Snac.RemoveAt(temp);
             Console.WriteLine("user got his snack");
-        }
-        public void HardCodeSnacks()
-        {
-            Snack charmander = new Snack("charmander", 15);
-            Snack pikachu = new Snack("pikachu", 20);
-            Snack squirtle = new Snack("squirtle", 10);
-            Snack bulbasaur = new Snack("bulbasaur", 5);
         }
         double ReturnRestOfMoney()
         {
