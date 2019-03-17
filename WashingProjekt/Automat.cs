@@ -12,7 +12,7 @@ namespace WashingProjekt
         public static double moneyErnedToday;
         public double valueOfSnac;
         bool isEnough = false;
-        public bool cancer = false;
+        public bool cancel = false;
 
 
         public string AvaibleSnacks()
@@ -66,10 +66,10 @@ namespace WashingProjekt
             {
                 //Checks if the user put enough money to autmat
                 CheckIfItsEnough();
-                //CancerOrder ask user if he is sure that he wants to proccede
+                //CancelOrder ask user if he is sure that he wants to proccede
                 //with action, there is no other chance
-                CancerOrder();
-                if (isEnough == true && cancer == false){
+                CancelOrder();
+                if (isEnough == true && cancel == false){
                     ReturnRestOfMoney();
                     GiveUserSnack();
                 }
@@ -92,15 +92,15 @@ namespace WashingProjekt
 
         //Asks user if he wants to proccede with the order
         //if not user gets his money back
-        bool CancerOrder()
+        bool CancelOrder()
         {
             Console.WriteLine("Do you want to proccede?");
             string yesNo = Console.ReadLine().ToLower();
 
             if (yesNo != "yes")
-                cancer = true;
+                cancel = true;
 
-            return cancer;
+            return cancel;
             //Check if user want to procced with order
         }
         void GiveUserSnack()
@@ -112,7 +112,7 @@ namespace WashingProjekt
         double ReturnRestOfMoney()
         {
             //if user canceled the valueofsnac goes to 0
-            if (cancer == true)
+            if (cancel == true)
                 valueOfSnac = 0;
 
             double returnValue = prog.moneyInput - valueOfSnac;
@@ -122,5 +122,6 @@ namespace WashingProjekt
             Console.WriteLine(moneyErnedToday);
             return returnValue;
         }
+        
     }
 }

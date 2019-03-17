@@ -9,26 +9,35 @@ namespace WashingProjekt
     class AdminMenu
     {
         public string nameOfSnack;
-        public double priceOfSnack;
-        int howManySnackAdd;
+        public static  double priceOfSnack;
+        public static double howManySnackAdd;
+        bool overFlow = false;
         public void AddSnack()
         {
+            //while(input.Length < 150)
             try
             {
-                Console.WriteLine("Write name of snack");
+                Console.Write("Write name of snack: \r\n");
                 nameOfSnack = Console.ReadLine();
-                Console.WriteLine("Write price of snack");
+                Console.Write("Write price of snack: \r\n");
                 priceOfSnack = double.Parse(Console.ReadLine());
-                Console.WriteLine("How many snacs of yours you want you add");
-                howManySnackAdd = int.Parse( Console.ReadLine() );
-
-                for (int i = 0; i < howManySnackAdd; i++)
+                Console.Write("How many snacs of yours you want you add: \r\n");
+                howManySnackAdd = double.Parse( Console.ReadLine() );
+                CheckForOverFlow();
+                if (overFlow == false)
                 {
-                    Snack newSnack = new Snack(nameOfSnack, priceOfSnack);
-                }
+                    for (int i = 0; i < howManySnackAdd; i++)
+                    {
+                        Snack newSnack = new Snack(nameOfSnack, priceOfSnack);
+                    }
+                    Console.WriteLine("Done");
+                }else
+                    Console.WriteLine("Not enough space in automat");
+                
             }
-            catch
+            catch 
             {
+              //  Console.WriteLine(e.ToString());
                 Console.WriteLine("Incorrect input");
             }
         }
@@ -38,6 +47,14 @@ namespace WashingProjekt
             Snack pikachu = new Snack("pikachu", 20);
             Snack squirtle = new Snack("squirtle", 10);
             Snack bulbasaur = new Snack("bulbasaur", 5);
+        }
+        void CheckForOverFlow()
+        {
+            if (priceOfSnack > 999 || howManySnackAdd > 999)
+            {
+                overFlow = true;
+            }
+
         }
     }
 }
